@@ -1,8 +1,10 @@
 ### Required Dependencies
+
 - React 18+
 - Tailwind CSS
 
 ## Code Quality Standards
+
 - Use TypeScript for type safety
 - Implement proper error handling
 - Follow React best practices
@@ -12,6 +14,7 @@
 ## Acceptance Criteria
 
 ### Timer Display Component
+
 - Displays time in MM:SS format
 - Shows default session duration of 25:00
 - Updates display format correctly
@@ -19,6 +22,7 @@
 - Properly centered in layout
 
 ### Timer Control Component
+
 - Start button renders correctly
 - Button styling matches design
 - Session duration displays accurately
@@ -26,6 +30,7 @@
 - Proper event handling implementation
 
 ### Code Quality
+
 - Clean, documented code
 - Proper TypeScript usage
 - Consistent formatting
@@ -35,6 +40,7 @@
 ## Development Guidelines
 
 ### Best Practices
+
 - Use functional components
 - Implement proper type safety
 - Follow React conventions
@@ -42,6 +48,7 @@
 - Implement clean code principles
 
 ### Code Organization
+
 - Maintain clear file structure
 - Use consistent naming
 - Implement proper imports
@@ -51,6 +58,7 @@
 ### Documentation Requirements
 
 #### Code Documentation
+
 - Include JSDoc comments
 - Document component props
 - Explain complex logic
@@ -58,6 +66,7 @@
 - Include usage examples
 
 #### README Requirements
+
 - Setup instructions
 - Dependencies list
 - Usage guidelines
@@ -65,6 +74,7 @@
 - Development notes
 
 ## Deliverables
+
 - Required Components:
   - TimerDisplay component
   - TimerControl component basic controls implementation
@@ -72,6 +82,7 @@
 - README documentation
 
 ### Optional Enhancements
+
 - Dark mode support
 - Additional time formats
 - Basic animations
@@ -79,12 +90,14 @@
 - Accessibility features
 
 ## Timeline
+
 - Development: 3 days
 - Testing: 1 day
 - Documentation: 1 day
 - Review & Refinement: 1 day
 
 ## Definition of Done
+
 - All requirements implemented
 - Code properly documented
 - README complete
@@ -98,20 +111,22 @@ A simple timer application built with React, TypeScript, and Tailwind CSS.
 ## Setup
 
 1. Clone the repository:
-    ```sh
-    git clone https://github.com/yourusername/TimedTimer.git
-    cd TimedTimer
-    ```
+
+   ```sh
+   git clone https://github.com/yourusername/TimedTimer.git
+   cd TimedTimer
+   ```
 
 2. Install dependencies:
-    ```sh
-    npm install
-    ```
+
+   ```sh
+   npm install
+   ```
 
 3. Run the development server:
-    ```sh
-    npm run dev
-    ```
+   ```sh
+   npm run dev
+   ```
 
 ## Usage
 
