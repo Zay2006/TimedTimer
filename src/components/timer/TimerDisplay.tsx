@@ -7,9 +7,9 @@ interface TimerDisplayProps {
 const TimerDisplay: React.FC<TimerDisplayProps> = ({ time }) => {
   const minutes = Math.floor(time / 60);
   const seconds = time % 60;
-  const formattedTime = `${String(minutes).padStart(2, "0")}:${String(
-    seconds
-  ).padStart(2, "0")}`;
+  const formattedTime = `${minutes.toString().padStart(2, "0")}:${seconds
+    .toString()
+    .padStart(2, "0")}`;
 
   return (
     <div className="text-4xl font-bold text-center bg-white p-6 rounded-2xl shadow-md">
