@@ -6,7 +6,7 @@ import Card from "../common/Card";
  * @returns {JSX.Element} The TimerDisplay component
  */
 const TimerDisplay: React.FC = () => {
-  const [time, setTime] = useState(1500); // 25 minutes in seconds
+  const [time, setTime] = useState<number>(1500); // 25 minutes in seconds
 
   useEffect(() => {
     const interval = setInterval(() => {
@@ -16,7 +16,7 @@ const TimerDisplay: React.FC = () => {
     return () => clearInterval(interval);
   }, []);
 
-  const formatTime = (seconds: number) => {
+  const formatTime = (seconds: number): string => {
     const minutes = Math.floor(seconds / 60);
     const remainingSeconds = seconds % 60;
     return `${String(minutes).padStart(2, "0")}:${String(

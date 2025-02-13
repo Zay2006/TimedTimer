@@ -10,7 +10,11 @@ interface CardProps {
  * @returns {JSX.Element} The Card component
  */
 const Card: React.FC<CardProps> = ({ children }) => {
-  return <div className="bg-white shadow-md rounded-lg p-6">{children}</div>;
+  return (
+    <div className="bg-white shadow-md rounded-lg p-6">
+      {children}
+    </div>
+  );
 };
 
 export default Card;

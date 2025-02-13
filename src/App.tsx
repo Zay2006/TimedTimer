@@ -1,6 +1,6 @@
-import React from "react";
-import TimerDisplay from "./components/timer/TimerDisplay";
-import TimerControls from "./components/timer/TimerControls";
+import React from 'react';
+import TimerDisplay from './components/timer/TimerDisplay';
+import TimerControls from './components/timer/TimerControls';
 
 /**
  * App component to render the main application
@@ -8,7 +8,7 @@ import TimerControls from "./components/timer/TimerControls";
  */
 const App: React.FC = () => {
   return (
-    <div className="flex flex-col items-center justify-center min-h-screen bg-gray-100">
+    <div className="flex flex-col items-center justify-center min-h-screen bg-gray-100 p-4">
       <TimerDisplay />
       <TimerControls />
     </div>
