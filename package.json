@@ -2,10 +2,12 @@
   "name": "timedtimer",
   "version": "1.0.0",
   "dependencies": {
+    "@shadcn/ui": "^0.0.4",
     "@tailwindcss/vite": "^4.0.6",
     "@vitejs/plugin-react": "^4.3.4",
     "react": "^19.0.0",
-    "react-dom": "^19.0.0"
+    "react-dom": "^19.0.0",
+    "shadcn-ui": "^0.9.4"
   },
   "devDependencies": {
     "@types/react": "^19.0.8",

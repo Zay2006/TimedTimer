@@ -1,15 +1,16 @@
-import React, { ReactNode } from "react";
+import React from "react";
 
 interface CardProps {
-  children: ReactNode;
+  children: React.ReactNode;
 }
 
-const Card = ({ children }: CardProps) => {
-  return (
-    <div className="p-6 bg-white shadow-lg rounded-lg text-center">
-      {children}
-    </div>
-  );
+/**
+ * Card component for layout
+ * @param {React.ReactNode} children - The content to be displayed inside the card
+ * @returns {JSX.Element} The Card component
+ */
+const Card: React.FC<CardProps> = ({ children }) => {
+  return <div className="bg-white shadow-md rounded-lg p-6">{children}</div>;
 };
 
 export default Card;

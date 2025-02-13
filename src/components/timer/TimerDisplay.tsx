@@ -1,20 +1,35 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
+import Card from "../common/Card";
 
-interface TimerDisplayProps {
-  time: number; // Time in seconds
-}
+/**
+ * TimerDisplay component to show the timer
+ * @returns {JSX.Element} The TimerDisplay component
+ */
+const TimerDisplay: React.FC = () => {
+  const [time, setTime] = useState(1500); // 25 minutes in seconds
 
-const TimerDisplay: React.FC<TimerDisplayProps> = ({ time }) => {
-  const minutes = Math.floor(time / 60);
-  const seconds = time % 60;
-  const formattedTime = `${minutes.toString().padStart(2, "0")}:${seconds
-    .toString()
-    .padStart(2, "0")}`;
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setTime((prevTime) => (prevTime > 0 ? prevTime - 1 : 0));
+    }, 1000);
+
+    return () => clearInterval(interval);
+  }, []);
+
+  const formatTime = (seconds: number) => {
+    const minutes = Math.floor(seconds / 60);
+    const remainingSeconds = seconds % 60;
+    return `${String(minutes).padStart(2, "0")}:${String(
+      remainingSeconds
+    ).padStart(2, "0")}`;
+  };
 
   return (
-    <div className="text-4xl font-bold text-center bg-white p-6 rounded-2xl shadow-md">
-      {formattedTime}
-    </div>
+    <Card>
+      <div className="text-center">
+        <h1 className="text-4xl font-bold">{formatTime(time)}</h1>
+      </div>
+    </Card>
   );
 };
 

@@ -1,18 +1,16 @@
 import React from "react";
 
-interface TimerControlsProps {
-  onStart: () => void;
-}
-
-const TimerControls: React.FC<TimerControlsProps> = ({ onStart }) => {
+/**
+ * TimerControls component to show the timer controls
+ * @returns {JSX.Element} The TimerControls component
+ */
+const TimerControls: React.FC = () => {
   return (
-    <div className="flex justify-center mt-4">
-      <button
-        onClick={onStart}
-        className="bg-blue-600 text-white px-6 py-2 rounded-lg text-lg font-semibold shadow-md hover:bg-blue-700 transition"
-      >
+    <div className="text-center mt-4">
+      <button className="bg-blue-500 text-white px-4 py-2 rounded">
         Start Focus Session
       </button>
+      <p className="mt-2">Current Session: 25 minutes</p>
     </div>
   );
 };
