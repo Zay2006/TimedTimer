@@ -1,4 +1,3 @@
-
 ### Required Dependencies
 - React 18+
 - Tailwind CSS
@@ -91,3 +90,46 @@
 - README complete
 - No known bugs
 - Proper error handling
+
+# TimedTimer
+
+A simple timer application built with React, TypeScript, and Tailwind CSS.
+
+## Setup
+
+1. Clone the repository:
+    ```sh
+    git clone https://github.com/yourusername/TimedTimer.git
+    cd TimedTimer
+    ```
+
+2. Install dependencies:
+    ```sh
+    npm install
+    ```
+
+3. Run the development server:
+    ```sh
+    npm run dev
+    ```
+
+## Usage
+
+- Open your browser and navigate to `http://localhost:3000` to see the timer application.
+- Use the buttons to start, stop, and reset the timer.
+
+## Tailwind CSS Configuration
+
+Tailwind CSS is used for styling. The configuration file is located at `tailwind.config.js`.
+
+## File Structure
+
+- `index.html`: The main HTML file.
+- `index.css`: The main CSS file.
+- `index.js`: The main JavaScript file.
+- `tailwind.config.js`: Tailwind CSS configuration file.
+- `src/App.tsx`: The main React component.
+
+## License
+
+This project is licensed under the MIT License.

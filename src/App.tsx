@@ -1,52 +1,42 @@
-import React, { useState } from "react";
-import TimerDisplay from "./components/timer/TimerDisplay";
-import TimerControls from "./components/timer/TimerControls";
+import React, { useState, useEffect } from "react";
+import TimerDisplay from "./components/TimerDisplay";
+import TimerControl from "./components/TimerControl";
 
-/**
- * App component to render the main application
- * @returns {JSX.Element} The App component
- */
 const App: React.FC = () => {
-  const [time, setTime] = useState<number>(1500); // 25 minutes in seconds
-  const [isRunning, setIsRunning] = useState<boolean>(false);
-  const [isDarkMode, setIsDarkMode] = useState<boolean>(false);
+  const [time, setTime] = useState(1500); // 25 minutes in seconds
+  const [isRunning, setIsRunning] = useState(false);
 
-  const handleStart = () => setIsRunning(true);
-  const handleStop = () => setIsRunning(false);
-  const handleRestart = () => {
+  useEffect(() => {
+    let timer: ReturnType<typeof setInterval>;
+    if (isRunning) {
+      timer = setInterval(() => {
+        setTime((prevTime) => (prevTime > 0 ? prevTime - 1 : 0));
+      }, 1000);
+    } else if (!isRunning && time !== 0) {
+      clearInterval(timer);
+    }
+    return () => clearInterval(timer);
+  }, [isRunning, time]);
+
+  const startTimer = () => setIsRunning(true);
+  const stopTimer = () => setIsRunning(false);
+  const resetTimer = () => {
     setIsRunning(false);
     setTime(1500); // Reset to 25 minutes
   };
 
-  const toggleDarkMode = () => setIsDarkMode(!isDarkMode);
-
   return (
-    <div
-      className={`flex flex-col items-center justify-center min-h-screen p-4 ${
-        isDarkMode ? "bg-gray-900 text-white" : "bg-gray-100 text-black"
-      }`}
-    >
-      <button
-        className="absolute top-4 right-4 bg-gray-500 text-white px-4 py-2 rounded"
-        onClick={toggleDarkMode}
-      >
-        {isDarkMode ? "Light Mode" : "Dark Mode"}
-      </button>
-      <TimerDisplay
-        time={time}
+    <div className="flex flex-col items-center justify-center h-screen bg-gray-100">
+      <TimerDisplay time={time} />
+      <TimerControl
         isRunning={isRunning}
-        onTimeChange={setTime}
-        sessionDuration={Math.floor(time / 60)} // Pass session duration in minutes
-      />
-      <TimerControls
-        isRunning={isRunning}
-        onStart={handleStart}
-        onStop={handleStop}
-        onRestart={handleRestart}
-        onTimeChange={setTime}
+        startTimer={startTimer}
+        stopTimer={stopTimer}
+        resetTimer={resetTimer}
       />
     </div>
   );
 };
 
 export default App;
+
