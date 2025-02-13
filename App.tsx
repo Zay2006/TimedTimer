@@ -1,5 +1,5 @@
-import TimerDisplay from "./components/timer/TimerDisplay";
-import TimerControls from "./components/timer/TimerControls";
+import TimerDisplay from "./src/components/timer/TimerDisplay";
+import TimerControls from "./src/components/timer/TimerControls";
 
 function App() {
   return (
