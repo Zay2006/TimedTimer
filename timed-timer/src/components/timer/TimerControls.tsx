@@ -14,9 +14,24 @@ const TimerControls: React.FC<TimerControlsProps> = ({
   customTime,
 }) => {
   const [showYouTube, setShowYouTube] = useState(false);
+  const [youtubeLink, setYoutubeLink] = useState("");
 
   const handleToggleYouTube = () => {
     setShowYouTube(!showYouTube);
+  };
+
+  const handleYouTubeLinkChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setYoutubeLink(e.target.value);
+  };
+
+  const getYouTubeEmbedUrl = (url: string) => {
+    const urlParams = new URLSearchParams(new URL(url).search);
+    const videoId = urlParams.get("v");
+    const playlistId = urlParams.get("list");
+    if (playlistId) {
+      return `https://www.youtube.com/embed/videoseries?list=${playlistId}&autoplay=1`;
+    }
+    return `https://www.youtube.com/embed/${videoId}?autoplay=1`;
   };
 
   return (
@@ -40,18 +55,30 @@ const TimerControls: React.FC<TimerControlsProps> = ({
         >
           {showYouTube ? "Hide YouTube" : "Show YouTube"}
         </button>
-        <div className="mt-2">Current Session: {customTime} minutes</div>
+        <div className="mt-2">
+          Current Session: {Math.floor(customTime / 3600)}:
+          {Math.floor((customTime % 3600) / 60)}:{customTime % 60}
+        </div>
         {showYouTube && (
           <div className="mt-4">
-            <iframe
-              width="560"
-              height="315"
-              src="https://www.youtube.com/embed/dQw4w9WgXcQ?autoplay=1"
-              title="YouTube video player"
-              frameBorder="0"
-              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-              allowFullScreen
-            ></iframe>
+            <input
+              type="text"
+              placeholder="Enter YouTube link"
+              value={youtubeLink}
+              onChange={handleYouTubeLinkChange}
+              className="p-2 border rounded w-full"
+            />
+            {youtubeLink && (
+              <iframe
+                width="560"
+                height="315"
+                src={getYouTubeEmbedUrl(youtubeLink)}
+                title="YouTube video player"
+                frameBorder="0"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                allowFullScreen
+              ></iframe>
+            )}
           </div>
         )}
       </div>

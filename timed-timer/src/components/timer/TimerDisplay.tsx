@@ -6,6 +6,8 @@ interface TimerDisplayProps {
   reset: boolean;
   customTime: number;
   setCustomTime: (time: number) => void;
+  onResetAudio: () => void;
+  textColor: string;
 }
 
 const TimerDisplay: React.FC<TimerDisplayProps> = ({
@@ -13,8 +15,10 @@ const TimerDisplay: React.FC<TimerDisplayProps> = ({
   reset,
   customTime,
   setCustomTime,
+  onResetAudio,
+  textColor,
 }) => {
-  const [time, setTime] = useState(customTime * 60); // Custom time in seconds
+  const [time, setTime] = useState(customTime); // Custom time in seconds
   const alarmRef = useRef<HTMLAudioElement>(null);
 
   useEffect(() => {
@@ -31,7 +35,11 @@ const TimerDisplay: React.FC<TimerDisplayProps> = ({
 
   useEffect(() => {
     if (reset) {
-      setTime(customTime * 60);
+      setTime(customTime);
+      if (alarmRef.current) {
+        alarmRef.current.pause();
+        alarmRef.current.currentTime = 0;
+      }
     }
   }, [reset, customTime]);
 
@@ -42,26 +50,53 @@ const TimerDisplay: React.FC<TimerDisplayProps> = ({
   }, [time]);
 
   const formatTime = (seconds: number) => {
-    const minutes = Math.floor(seconds / 60);
+    const hours = Math.floor(seconds / 3600);
+    const minutes = Math.floor((seconds % 3600) / 60);
     const remainingSeconds = seconds % 60;
-    return `${minutes.toString().padStart(2, "0")}:${remainingSeconds
+    return `${hours.toString().padStart(2, "0")}:${minutes
       .toString()
-      .padStart(2, "0")}`;
+      .padStart(2, "0")}:${remainingSeconds.toString().padStart(2, "0")}`;
   };
 
   const handleCustomTimeChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setCustomTime(Number(e.target.value));
+    const { name, value } = e.target;
+    const timeInSeconds = {
+      hours: Number(value) * 3600,
+      minutes: Number(value) * 60,
+      seconds: Number(value),
+    };
+    setCustomTime(timeInSeconds[name as keyof typeof timeInSeconds]);
   };
 
   return (
     <Card>
-      <div className="text-center text-4xl font-bold">{formatTime(time)}</div>
+      <div
+        className="text-center text-4xl font-bold"
+        style={{ color: textColor }}
+      >
+        {formatTime(time)}
+      </div>
       <div className="mt-4">
         <label className="block text-center">
-          Set Timer (minutes):
+          Set Timer:
           <input
             type="number"
-            value={customTime}
+            name="hours"
+            placeholder="Hours"
+            onChange={handleCustomTimeChange}
+            className="ml-2 p-1 border rounded"
+          />
+          <input
+            type="number"
+            name="minutes"
+            placeholder="Minutes"
+            onChange={handleCustomTimeChange}
+            className="ml-2 p-1 border rounded"
+          />
+          <input
+            type="number"
+            name="seconds"
+            placeholder="Seconds"
             onChange={handleCustomTimeChange}
             className="ml-2 p-1 border rounded"
           />
